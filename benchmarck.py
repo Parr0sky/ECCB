@@ -18,7 +18,7 @@ start_time= time()
 private_key = X25519PrivateKey.generate()
 peer_public_key = X25519PrivateKey.generate().public_key()
 print("Generación llave X25519 en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
-
+private_key=0
 
 #25519 sign
 start_time= time()
@@ -30,13 +30,13 @@ start_time= time()
 public_key = private_key.public_key()
 public_key.verify(signature, mensaje)
 print("Verificación firma X25519 en: " + str(time()-start_time) + " sec")
-
+private_key=0
 #448 Key Exchange
 start_time=time()
 private_key = X448PrivateKey.generate()
 peer_public_key = X448PrivateKey.generate().public_key()
 print("Generación 448 llave en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
-
+private_key=0
 #448 sign
 
 private_key = Ed448PrivateKey.generate()
@@ -47,7 +47,7 @@ start_time=time()
 public_key = private_key.public_key()
 public_key.verify(signature, mensaje)
 print("Verificación 448 firma en: " + str(time()-start_time) + " sec")
-
+private_key=0
 
 #RSA GENERATION
 start_time=time()
@@ -56,6 +56,7 @@ private_key = rsa.generate_private_key(
     key_size=2048,
 )
 print("Generación RSA llave en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
+
 #RSA SINGING
 start_time=time()
 signature = private_key.sign(
@@ -67,6 +68,7 @@ signature = private_key.sign(
     hashes.SHA256()
 )
 print("Generación RSA firma en: " + str(time()-start_time) + " sec")
+private_key=0
 #DSA SINGING
 start_time=time()
 private_key = dsa.generate_private_key(
