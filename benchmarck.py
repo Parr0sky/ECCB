@@ -9,6 +9,7 @@ from cryptography.hazmat.primitives.asymmetric.ed448 import Ed448PrivateKey
 from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PrivateKey
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from time import time
+import sys
 
 mensaje= b"89392679556575597635196565386081702718512260749406173579320076828061414488077821523722981888265393212848183094"
 
@@ -16,7 +17,7 @@ mensaje= b"893926795565755976351965653860817027185122607494061735793200768280614
 start_time= time()
 private_key = X25519PrivateKey.generate()
 peer_public_key = X25519PrivateKey.generate().public_key()
-print("Generación llave X25519 en: " + str(time()-start_time) + " sec")
+print("Generación llave X25519 en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
 
 
 #25519 sign
@@ -34,7 +35,7 @@ print("Verificación firma X25519 en: " + str(time()-start_time) + " sec")
 start_time=time()
 private_key = X448PrivateKey.generate()
 peer_public_key = X448PrivateKey.generate().public_key()
-print("Generación 448 llave en: " + str(time()-start_time) + " sec")
+print("Generación 448 llave en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
 
 #448 sign
 
@@ -54,7 +55,7 @@ private_key = rsa.generate_private_key(
     public_exponent=65537,
     key_size=2048,
 )
-print("Generación RSA llave en: " + str(time()-start_time) + " sec")
+print("Generación RSA llave en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
 #RSA SINGING
 start_time=time()
 signature = private_key.sign(
@@ -71,7 +72,7 @@ start_time=time()
 private_key = dsa.generate_private_key(
     key_size=1024,
 )
-print("Generación DSA llave en: " + str(time()-start_time) + " sec")
+print("Generación DSA llave en: " + str(time()-start_time) + " sec con tamaño: "+ str(sys.getsizeof(private_key))+" bytes")
 start_time =time()
 signature = private_key.sign(
     mensaje,
