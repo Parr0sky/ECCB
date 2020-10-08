@@ -1,3 +1,4 @@
+# encoding: utf-8
 import benchmarck as bn
 import numpy as np
 from decimal import *
