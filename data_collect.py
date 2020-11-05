@@ -4,9 +4,7 @@ import numpy as np
 from decimal import *
 
 getcontext().prec=9
-def geo_mean(iterable):
-    a = np.array(iterable)
-    return a.prod()**(1.0/len(a))
+
 
 a=[]
 k2 = []
@@ -19,8 +17,9 @@ kr = []
 sr = []
 kd = []
 sd = []
-
-for i in range(0,1000):
+n=int(input("Ingrese el número de vehículos en la red \n"))
+iterations = 10000 if int(input("Ingrese el contexto: \n 1 para infraestructura \n 2 para vehículo \n")) == 1 else 100
+for i in range(0,n):
     dt = bn.data()
     k2.append(dt[0])
     s2.append(dt[1])
@@ -36,20 +35,20 @@ for i in range(0,1000):
         print("avance: "+ str(i))
 
 print("Creación de llaves")
-print("             Promedio                    Desviación estándar                 Med. Geom")
-print("X25519       " + str(np.mean(k2)) + "                    " + str(np.std(k2)) + "                 "+ str(geo_mean(k2)))
-print("X448         " + str(np.mean(k4)) + "                    " + str(np.std(k4)) + "                 "+ str(geo_mean(k4)))
-print("RSA          " + str(np.mean(kr)) + "                    " + str(np.std(kr)) + "                 "+ str(geo_mean(kr)))
-print("DSA          " + str(np.mean(kd)) + "                    " + str(np.std(kd)) + "                 "+ str(geo_mean(kd)))
+print("             Promedio                    Desviación estándar                ")
+print("X25519       " + str(np.mean(k2)) + "                    " + str(np.std(k2)))
+print("X448         " + str(np.mean(k4)) + "                    " + str(np.std(k4)))
+print("RSA          " + str(np.mean(kr)) + "                    " + str(np.std(kr)))
+print("DSA          " + str(np.mean(kd)) + "                    " + str(np.std(kd)))
 print("")
 print("Firmado")
-print("             Promedio                    Desviación estándar                 Med. Geom")
-print("X25519       " + str(np.mean(s2)) + "                    " + str(np.std(s2)) + "                 "+ str(geo_mean(s2)))
-print("X448         " + str(np.mean(s4)) + "                    " + str(np.std(s4)) + "                 "+ str(geo_mean(s4)))
-print("RSA          " + str(np.mean(sr)) + "                    " + str(np.std(sr)) + "                 "+ str(geo_mean(sr)))
-print("DSA          " + str(np.mean(sd)) + "                    " + str(np.std(sd)) + "                 "+ str(geo_mean(sd)))
+print("             Promedio                    Desviación estándar                ")
+print("X25519       " + str(np.mean(s2)) + "                    " + str(np.std(s2)))
+print("X448         " + str(np.mean(s4)) + "                    " + str(np.std(s4)))
+print("RSA          " + str(np.mean(sr)) + "                    " + str(np.std(sr)))
+print("DSA          " + str(np.mean(sd)) + "                    " + str(np.std(sd)))
 print("")
 print("Verificación")
-print("             Promedio                    Desviación estándar                 Med. Geom")
-print("X25519       " + str(np.mean(v2)) + "                    " + str(np.std(v2)) + "                 "+ str(geo_mean(v2)))
-print("X448         " + str(np.mean(v4)) + "                    " + str(np.std(v4)) + "                 "+ str(geo_mean(v4)))
+print("             Promedio                    Desviación estándar                 ")
+print("X25519       " + str(np.mean(v2)) + "                    " + str(np.std(v2)))
+print("X448         " + str(np.mean(v4)) + "                    " + str(np.std(v4)))
